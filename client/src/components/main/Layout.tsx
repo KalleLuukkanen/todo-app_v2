@@ -6,7 +6,7 @@ function Layout() {
     return (
         <div className="flex flex-col h-full">
             <Header />
-            <main>
+            <main className="p-4">
                 <Outlet />
             </main>
             <Footer />
@@ -14,4 +14,4 @@ function Layout() {
     );
 }
 
-export default Layout
+export default Layout;
