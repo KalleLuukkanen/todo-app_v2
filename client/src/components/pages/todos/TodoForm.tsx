@@ -7,10 +7,10 @@ function TodoForm() {
 
     return (
         <div
-            className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl bg-white p-6 shadow-xl"
+            className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl bg-white p-4 shadow-xl"
             onClick={(e) => e.stopPropagation()}
         >
-            <form onSubmit={handleForm} className="flex flex-col space-y-8">
+            <form onSubmit={handleForm} className="flex flex-col space-y-8 p-4 border-2 border-gray-300 rounded">
                 <p className="rounded bg-blue-200 p-4 text-2xl font-bold">
                     Add a new todo:
                 </p>
@@ -123,14 +123,13 @@ function TodoForm() {
                             )}
                         </div>
                     </div>
-
-                    <button
-                        type="submit"
-                        className="cursor-pointer rounded bg-blue-200 p-2"
-                    >
-                        Add todo
-                    </button>
                 </div>
+                <button
+                    type="submit"
+                    className="cursor-pointer rounded bg-blue-300 p-2"
+                >
+                    Add todo
+                </button>
             </form>
         </div>
     );

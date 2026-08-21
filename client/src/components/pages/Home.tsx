@@ -13,7 +13,7 @@ function Home() {
     return (
         <div className="flex flex-col space-y-4">
             <div className="space-y-2">
-                <button className="cursor-pointer text-3xl font-bold" onClick={() => setIsOpen_1(!isOpen_1)}>Three most urgent todos</button>
+                <button className="cursor-pointer text-3xl font-bold" onClick={() => setIsOpen_1(!isOpen_1)}>Most urgent todos</button>
                 {isOpen_1 && <ThreeLatest />}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

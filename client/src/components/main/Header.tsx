@@ -9,7 +9,7 @@ function Header() {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     return (
-        <header className="flex items-center p-4 bg-gray-400 relative">
+        <header className="flex items-center p-4 bg-blue-300 relative">
             <nav className="ml-2">
                 <ul className="flex items-center space-x-4">
                     <li>
@@ -39,7 +39,7 @@ function Header() {
             </nav>
             <div className="flex items-center space-x-4 ml-auto mr-2">
                 <input type="text" className="border-1 border-black p-2 rounded" placeholder="🔍 Search"></input>
-                <button className="cursor-pointer border-1 border-black p-2 rounded" onClick={() => setIsFormOpen(true)}>Add a new todo</button>
+                <button className="cursor-pointer border-1 border-black p-2 rounded" onClick={() => setIsFormOpen(true)}>Add a new todo ➕</button>
                 <button className="cursor-pointer text-3xl" onClick={() => setIsMenuOpen(prev => !prev)}>≡</button>
             </div>
             {isMenuOpen &&

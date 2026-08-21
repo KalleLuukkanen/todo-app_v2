@@ -1,7 +1,7 @@
 function Todays() {
     return (
         <div>
-            testi
+            todays todos
         </div>
     )
 }

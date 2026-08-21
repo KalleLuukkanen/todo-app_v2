@@ -1,7 +1,7 @@
 function ThisWeeks() {
     return (
         <div>
-            testi
+            weeks todos
         </div>
     )
 }
