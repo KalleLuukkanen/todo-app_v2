@@ -8,6 +8,7 @@ function Todos() {
     const [isOpen, setIsOpen] = useState(true);
     const [filter, setFilter] = useState("all");
     const [filterOnCompletion, setFilterOnCompletion] = useState("uncompleted");
+    const [sort, setSort] = useState("newest");
 
     return (
         <div className="space-y-4">
@@ -15,6 +16,17 @@ function Todos() {
                 <button className="cursor-pointer text-4xl font-bold" onClick={() => setIsOpen(!isOpen)}>Todos</button>
                 {isOpen &&
                     <div className="flex space-x-4 ml-auto">
+                        <select
+                            id="sort"
+                            name="sort"
+                            value={sort}
+                            onChange={(e) => setSort(e.target.value)}
+                            className="rounded border border-gray-400 p-2"
+                        >
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="nearest">Nearest due</option>
+                        </select>
                         <select
                             id="filter-completion"
                             name="filter-completion"
