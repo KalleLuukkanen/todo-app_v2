@@ -1,5 +1,42 @@
+import { useState } from "react";
+import { authClient } from "../../utils/auth.ts";
+
 function Authentication({ isLogin }: { isLogin: boolean }) {
-    const handleForm = () => { };
+
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+
+    const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (isLogin) {
+            await authClient.signIn.email(
+                { email, password },
+                {
+                    onError: (c) => {
+                        alert(c.error.message);
+                    },
+                    onSuccess: () => {
+                        window.location.href = "/";
+                    },
+                },
+            );
+        } else {
+            await authClient.signUp.email(
+                { email, password, name: email },
+                {
+                    onError: (c) => {
+                        alert(c.error.message);
+                    },
+                    onSuccess: () => {
+                        setTimeout(() => {
+                            window.location.href = "/";
+                        }, 1000);
+                    },
+                },
+            );
+        }
+    };
 
     return (
         <form
@@ -12,11 +49,23 @@ function Authentication({ isLogin }: { isLogin: boolean }) {
             <div className="flex flex-col space-y-6">
                 <label className="space-x-2">
                     <span className="text-xl">Email:</span>
-                    <input id="email" name="email" type="email" required className="p-2 rounded border-2 border-gray-500" />
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="p-2 rounded border-2 border-gray-500" />
                 </label>
                 <label className="space-x-2">
                     <span className="text-xl">Password:</span>
-                    <input id="password" name="password" type="password" required className="p-2 rounded border-2 border-gray-500" />
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="p-2 rounded border-2 border-gray-500" />
                 </label>
                 <button type="submit" className="p-2 bg-blue-300 rounded cursor-pointer">{isLogin ? "Login" : "Register"}</button>
             </div>
