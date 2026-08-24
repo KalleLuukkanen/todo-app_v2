@@ -50,6 +50,6 @@ app.post("/api/todos", todosController.create);
 app.delete("/api/todos", todosController.removeAll);
 app.delete("/api/todos/:todoId", todosController.remove);
 app.patch("/api/todos/:todoId/modify", todosController.modify);
-app.patch("/api/todos:todoId/done", todosController.completeOrUncomplete);
+app.patch("/api/todos/:todoId/done", todosController.completeOrUncomplete);
 
 export default app;
