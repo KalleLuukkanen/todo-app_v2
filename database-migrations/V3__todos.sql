@@ -1,0 +1,10 @@
+CREATE TABLE "todos" (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    description TEXT,
+    deadline TIMESTAMPTZ,
+    done BOOLEAN NOT NULL DEFAULT FALSE,
+    user_id VARCHAR(255) NOT NULL REFERENCES app_user(id),
+    category_id INTEGER REFERENCES categories(id)
+);
