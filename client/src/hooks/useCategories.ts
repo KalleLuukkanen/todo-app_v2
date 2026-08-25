@@ -20,6 +20,7 @@ function useCategories() {
     const createCategory = async (name: string) => {
         const created = await categoriesApi.create(name);
         setCategories((prev) => [...prev, created]);
+        return created;
     };
 
     const removeCategory = async (categoryId: number) => {

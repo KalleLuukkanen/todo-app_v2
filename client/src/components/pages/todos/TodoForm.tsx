@@ -1,9 +1,40 @@
 import { useState } from "react";
+import useCategories from "../../../hooks/useCategories";
+import { useTodos } from "../../../states/TodosContext";
 
-function TodoForm() {
-    const handleForm = () => { };
+function TodoForm({ onClose }: { onClose: () => void }) {
+    const { categories, createCategory } = useCategories();
+    const { createTodo } = useTodos();
 
-    const [category, setCategory] = useState("no");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [deadline, setDeadline] = useState("");
+    const [categoryChoice, setCategoryChoice] = useState("no");
+    const [existingCategoryId, setExistingCategoryId] = useState("");
+    const [newCategoryName, setNewCategoryName] = useState("");
+
+    const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        let category_id: number | null = null;
+
+        if (categoryChoice === "existing" && existingCategoryId) {
+            category_id = Number(existingCategoryId);
+        } else if (categoryChoice === "new" && newCategoryName) {
+            const created = await createCategory(newCategoryName);
+            category_id = created.id;
+        }
+
+        await createTodo({
+            name,
+            description: description || null,
+            category_id,
+            deadline: deadline || null,
+        });
+
+        onClose();
+
+    };
 
     return (
         <div
@@ -26,10 +57,11 @@ function TodoForm() {
 
                         <input
                             id="name"
-                            name="name"
                             className="ml-2 rounded border border-gray-400 p-2"
                             type="text"
                             required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             placeholder="Write a short name here"
                         />
                     </label>
@@ -39,9 +71,10 @@ function TodoForm() {
 
                         <textarea
                             id="description"
-                            name="description"
                             rows={3}
                             className="ml-2 rounded border border-gray-400 p-2"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                             placeholder="Add a description"
                         />
                     </label>
@@ -51,9 +84,10 @@ function TodoForm() {
 
                         <input
                             id="due"
-                            name="due"
                             className="ml-2 rounded border border-gray-400 p-2"
                             type="datetime-local"
+                            value={deadline}
+                            onChange={(e) => setDeadline(e.target.value)}
                         />
                     </label>
 
@@ -66,9 +100,9 @@ function TodoForm() {
                                     <input
                                         type="radio"
                                         value="no"
-                                        name="category"
-                                        checked={category === "no"}
-                                        onChange={(e) => setCategory(e.target.value)}
+                                        name="category_choice"
+                                        checked={categoryChoice === "no"}
+                                        onChange={(e) => setCategoryChoice(e.target.value)}
                                     />
                                     {" "}No category
                                 </label>
@@ -77,9 +111,9 @@ function TodoForm() {
                                     <input
                                         type="radio"
                                         value="existing"
-                                        name="category"
-                                        checked={category === "existing"}
-                                        onChange={(e) => setCategory(e.target.value)}
+                                        name="category_choice"
+                                        checked={categoryChoice === "existing"}
+                                        onChange={(e) => setCategoryChoice(e.target.value)}
                                     />
                                     {" "}Choose from existing
                                 </label>
@@ -88,37 +122,44 @@ function TodoForm() {
                                     <input
                                         type="radio"
                                         value="new"
-                                        name="category"
-                                        checked={category === "new"}
-                                        onChange={(e) => setCategory(e.target.value)}
+                                        name="category_choice"
+                                        checked={categoryChoice === "new"}
+                                        onChange={(e) => setCategoryChoice(e.target.value)}
                                     />
                                     {" "}Create new
                                 </label>
                             </div>
 
-                            {category === "new" && (
+                            {categoryChoice === "new" && (
                                 <label className="flex flex-col space-y-2">
                                     <p>New category:</p>
 
                                     <input
-                                        id="new-category"
-                                        name="new-category"
+                                        id="new_category"
                                         type="text"
                                         className="rounded border border-gray-400 p-2"
+                                        value={newCategoryName}
+                                        onChange={(e) => setNewCategoryName(e.target.value)}
                                         placeholder="Write a name for the new category here"
                                     />
                                 </label>
                             )}
 
-                            {category === "existing" && (
+                            {categoryChoice === "existing" && (
                                 <label className="flex flex-col space-y-2">
                                     <p>Existing categories:</p>
 
                                     <select
-                                        id="existing-category"
-                                        name="existing-category"
+                                        id="existing_category"
                                         className="rounded border border-gray-400 p-2"
-                                    />
+                                        value={existingCategoryId}
+                                        onChange={(e) => setExistingCategoryId(e.target.value)}
+                                    >
+                                        <option value="">Select a category</option>
+                                        {categories.map((c) => (
+                                            <option key={c.id} value={c.id}>{c.name}</option>
+                                        ))}
+                                    </select>
                                 </label>
                             )}
                         </div>

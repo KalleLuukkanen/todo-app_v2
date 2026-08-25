@@ -50,7 +50,7 @@ function Header() {
                     className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-4"
                     onClick={() => setIsFormOpen(false)}
                 >
-                    <TodoForm />
+                    <TodoForm onClose={() => setIsFormOpen(false)} />
                 </div>}
 
         </header>

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { toNodeHandler } from "better-auth/node";
+import { toNodeHandler, fromNodeHeaders } from "better-auth/node";
 import { auth } from "./auth.js";
 import * as categoriesController from "./controllers/categoriesController.js";
 import * as todosController from "./controllers/todosController.js";
@@ -20,7 +20,7 @@ app.use(express.json());
 
 //auth
 app.use(async (req, res, next) => {
-    const session = await auth.api.getSession({ headers: new Headers(req.headers as Record<string, string>) });
+    const session = await auth.api.getSession({ headers: fromNodeHeaders(req.headers) });
     if (!session) {
         return next();
     }
@@ -28,8 +28,8 @@ app.use(async (req, res, next) => {
     return next();
 });
 app.use("/api", (req, res, next) => {
-    const user = (req as any).user;
-    if (!user) {
+    const userId = (req as any).userId;
+    if (!userId) {
         return res.status(401).json({ message: "Unauthorized" });
     }
     return next();
