@@ -29,7 +29,7 @@ function TodoForm({ onClose }: { onClose: () => void }) {
             name,
             description: description || null,
             category_id,
-            deadline: deadline || null,
+            deadline: deadline ? new Date(deadline).toISOString() : null,
         });
 
         onClose();

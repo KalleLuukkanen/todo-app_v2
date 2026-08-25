@@ -1,8 +1,8 @@
 import { useState } from "react";
-import AllTodos from "./AllTodos";
-import Todays from "./Todays";
-import ThisWeeks from "./ThisWeeks";
-import ThisMonths from "./ThisMonths";
+import AllTodos from "../features/todos/AllTodos";
+import Todays from "../features/todos/Todays";
+import ThisWeeks from "../features/todos/ThisWeeks";
+import ThisMonths from "../features/todos/ThisMonths";
 
 function Todos() {
     const [isOpen, setIsOpen] = useState(true);
@@ -66,25 +66,25 @@ function Todos() {
             {
                 isOpen && <div className="ml-4">
                     {filter === "all" &&
-                        <div className="space-y-2">
+                        <div className="space-y-6">
                             <p className="text-3xl underline">All todos</p>
                             <AllTodos />
                         </div>}
 
                     {filter === "today" &&
-                        <div className="space-y-2">
+                        <div className="space-y-6">
                             <p className="text-3xl underline">Due today</p>
                             <Todays />
                         </div>}
 
                     {filter === "week" &&
-                        <div className="space-y-2">
+                        <div className="space-y-6">
                             <p className="text-3xl underline">Due this week</p>
                             <ThisWeeks />
                         </div>}
 
                     {filter === "month" &&
-                        <div className="space-y-2">
+                        <div className="space-y-6">
                             <p className="text-3xl underline">Due this month</p>
                             <ThisMonths />
                         </div>}
