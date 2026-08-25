@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useUserState } from "../../states/AuthContext";
+import { useUserState } from "../context/AuthContext";
 
 function Menu() {
     const { logout } = useUserState();

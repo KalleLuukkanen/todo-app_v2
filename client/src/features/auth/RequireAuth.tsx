@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import { useUserState } from "../../states/AuthContext";
+import { useUserState } from "../../context/AuthContext";
 import Restriction from "./Restriction";
-import Loading from "../main/Loading";
+import Loading from "../../layouts/Loading";
 
 function RequireAuth() {
     const { userState } = useUserState();

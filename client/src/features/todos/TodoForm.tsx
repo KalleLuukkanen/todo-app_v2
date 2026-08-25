@@ -1,6 +1,6 @@
 import { useState } from "react";
-import useCategories from "../../../hooks/useCategories";
-import { useTodos } from "../../../states/TodosContext";
+import useCategories from "../../hooks/useCategories";
+import { useTodos } from "../../context/TodosContext";
 
 function TodoForm({ onClose }: { onClose: () => void }) {
     const { categories, createCategory } = useCategories();

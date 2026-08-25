@@ -8,6 +8,7 @@ function Todos() {
     const [isOpen, setIsOpen] = useState(true);
     const [filter, setFilter] = useState("all");
     const [filterOnCompletion, setFilterOnCompletion] = useState("uncompleted");
+    const [filterOnCategory, setFilterOnCategory] = useState("all");
     const [sort, setSort] = useState("newest");
 
     return (
@@ -28,8 +29,17 @@ function Todos() {
                             <option value="nearest">Nearest due</option>
                         </select>
                         <select
-                            id="filter-completion"
-                            name="filter-completion"
+                            id="filter_category"
+                            name="filter_category"
+                            value={filterOnCategory}
+                            onChange={(e) => setFilterOnCategory(e.target.value)}
+                            className="rounded border border-gray-400 p-2"
+                        >
+                            <option value="all">All categories</option>
+                        </select>
+                        <select
+                            id="filter_completion"
+                            name="filter_completion"
                             value={filterOnCompletion}
                             onChange={(e) => setFilterOnCompletion(e.target.value)}
                             className="rounded border border-gray-400 p-2"

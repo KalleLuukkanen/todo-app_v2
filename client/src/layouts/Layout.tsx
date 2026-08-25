@@ -1,7 +1,7 @@
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
-import { useUserState } from "../../states/AuthContext";
-import { TodosProvider } from "../../states/TodosContext";
+import { useUserState } from "../context/AuthContext";
+import { TodosProvider } from "../context/TodosContext";
 
 function Layout() {
     const { userState } = useUserState();

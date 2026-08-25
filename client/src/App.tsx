@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/main/Layout";
-import Home from "./components/pages/Home";
-import About from "./components/pages/about/About";
-import TodoPage from "./components/pages/todos/TodoPage";
-import UserInfo from "./components/pages/user/UserInfo";
-import Authentication from "./components/auth/Authentication";
-import RequireAuth from "./components/auth/RequireAuth";
+import Layout from "./layouts/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import TodoPage from "./pages/TodoPage";
+import UserInfo from "./pages/UserInfo";
+import Authentication from "./features/auth/Authentication";
+import RequireAuth from "./features/auth/RequireAuth";
 
 
 

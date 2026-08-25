@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ThreeLatest from "./todos/ThreeLatest";
-import Todays from "./todos/Todays";
-import ThisWeeks from "./todos/ThisWeeks";
+import ThreeLatest from "../features/todos/ThreeLatest";
+import Todays from "../features/todos/Todays";
+import ThisWeeks from "../features/todos/ThisWeeks";
 
 function Home() {
     const [isOpen_1, setIsOpen_1] = useState(true);

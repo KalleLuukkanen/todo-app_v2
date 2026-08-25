@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as categoriesApi from "../apis/categoriesApi";
+import * as categoriesApi from "../api/categoriesApi";
 
 type Category = {
     id: number;

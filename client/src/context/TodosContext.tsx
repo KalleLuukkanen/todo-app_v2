@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from "react";
-import * as todosApi from "../apis/todosApi.ts";
+import * as todosApi from "../api/todosApi.ts";
 
 type Todo = {
     id: number;
