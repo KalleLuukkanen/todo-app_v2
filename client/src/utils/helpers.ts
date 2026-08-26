@@ -78,3 +78,14 @@ export const byCategory = (todos: TodoType[], categoryId: number | null) => {
         return t.category_id === categoryId;
     })
 };
+
+//todo stats
+export const amount = (todos: TodoType[]) => {
+    return todos.length;
+};
+export const amountOfCompleted = (todos: TodoType[]) => {
+    return completed(todos).length;
+};
+export const amountOfUnCompleted = (todos: TodoType[]) => {
+    return uncompleted(todos).length;
+};

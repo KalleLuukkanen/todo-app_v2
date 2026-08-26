@@ -4,6 +4,7 @@ import Todays from "../features/todos/Todays";
 import ThisWeeks from "../features/todos/ThisWeeks";
 import { useTodos } from "../context/TodosContext";
 import * as helpers from "../utils/helpers"
+import TodoStats from "../features/todos/TodoStats";
 
 function Home() {
     const [isOpen_1, setIsOpen_1] = useState(true);
@@ -13,7 +14,8 @@ function Home() {
     const { todos } = useTodos();
 
     return (
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-8">
+            <TodoStats />
             <div className="space-y-2">
                 <button className="cursor-pointer text-3xl font-bold" onClick={() => setIsOpen_1(!isOpen_1)}>Most urgent todos</button>
                 {isOpen_1 && <ThreeLatest todoList={helpers.mostUrgent(todos)} />}
