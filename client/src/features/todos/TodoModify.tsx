@@ -3,7 +3,7 @@ import { useState } from "react";
 import useCategories from "../../hooks/useCategories";
 import { toDatetimeLocal } from "../../utils/helpers";
 
-function TodoModify({ id }: { id: number }) {
+function TodoModify({ id, onClose }: { id: number, onClose: () => void }) {
     const { todos, removeTodo, modify } = useTodos();
     const { categories, createCategory } = useCategories();
 
@@ -20,11 +20,34 @@ function TodoModify({ id }: { id: number }) {
 
     if (!todo) return null;
 
-    const remove = async () => { };
+    const remove = async () => {
+        await removeTodo(id);
+
+        onClose();
+    };
 
     const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    }
+
+        let category_id: number | null = null;
+
+        if (categoryChoice === "existing" && category) {
+            category_id = Number(category);
+        } else if (categoryChoice === "new" && newCategoryName) {
+            const created = await createCategory(newCategoryName);
+            category_id = created.id;
+        }
+
+        await modify(id, {
+            name,
+            description,
+            category_id,
+            deadline: deadline ? new Date(deadline).toISOString() : null,
+            done,
+        });
+
+        onClose();
+    };
 
     return (
         <div
@@ -160,7 +183,7 @@ function TodoModify({ id }: { id: number }) {
                 </div>
 
                 <div className="flex space-x-4">
-                    <button onClick={() => remove()} className="cursor-pointer rounded bg-red-300 p-2 ml-4">Delete todo</button>
+                    <button type="button" onClick={() => remove()} className="cursor-pointer rounded bg-red-300 p-2 ml-4">Delete todo</button>
                     <button type="submit" className="cursor-pointer rounded bg-green-300 p-2 ml-auto mr-4">Save changes</button>
                 </div>
             </form>

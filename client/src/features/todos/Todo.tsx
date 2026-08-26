@@ -30,7 +30,7 @@ function Todo({ id }: { id: number }) {
             <div
                 className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-4"
                 onClick={() => setExpanded(false)}
-            ><TodoModify id={todo.id} /></div>
+            ><TodoModify id={todo.id} onClose={() => setExpanded(false)} /></div>
 
         )
     }
