@@ -21,11 +21,11 @@ function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                     <button className="cursor-pointer text-3xl font-bold" onClick={() => setIsOpen_2(!isOpen_2)}>Due today</button>
-                    {isOpen_2 && <Todays todoList={helpers.dueToday(todos)} />}
+                    {isOpen_2 && <Todays todoList={helpers.dueToday(todos)} sort={null} categoryFilter={null} completionFilter={null} />}
                 </div>
                 <div className="space-y-2">
                     <button className="cursor-pointer text-3xl font-bold" onClick={() => setIsOpen_3(!isOpen_3)}>Due this week</button>
-                    {isOpen_3 && <ThisWeeks todoList={helpers.dueThisWeek(todos)} />}
+                    {isOpen_3 && <ThisWeeks todoList={helpers.dueThisWeek(todos)} sort={null} categoryFilter={null} completionFilter={null} />}
                 </div>
             </div>
         </div>

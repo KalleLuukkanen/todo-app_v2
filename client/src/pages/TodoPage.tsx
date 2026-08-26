@@ -5,9 +5,11 @@ import ThisWeeks from "../features/todos/ThisWeeks";
 import ThisMonths from "../features/todos/ThisMonths";
 import * as helpers from "../utils/helpers";
 import { useTodos } from "../context/TodosContext";
+import useCategories from "../hooks/useCategories";
 
 function Todos() {
     const { todos } = useTodos();
+    const { categories } = useCategories();
 
     const [isOpen, setIsOpen] = useState(true);
     const [filter, setFilter] = useState("all");
@@ -40,6 +42,9 @@ function Todos() {
                             className="rounded border border-gray-400 p-2"
                         >
                             <option value="all">All categories</option>
+                            {categories.map((c) => (
+                                <option key={c.id} value={c.id}>{c.name}</option>
+                            ))}
                         </select>
                         <select
                             id="filter_completion"
@@ -72,25 +77,25 @@ function Todos() {
                     {filter === "all" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">All todos</p>
-                            <AllTodos />
+                            <AllTodos sort={sort} categoryFilter={filterOnCategory} completionFilter={filterOnCompletion} />
                         </div>}
 
                     {filter === "today" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">Due today</p>
-                            <Todays todoList={helpers.dueToday(todos)} />
+                            <Todays todoList={helpers.dueToday(todos)} sort={sort} categoryFilter={filterOnCategory} completionFilter={filterOnCompletion} />
                         </div>}
 
                     {filter === "week" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">Due this week</p>
-                            <ThisWeeks todoList={helpers.dueThisWeek(todos)} />
+                            <ThisWeeks todoList={helpers.dueThisWeek(todos)} sort={sort} categoryFilter={filterOnCategory} completionFilter={filterOnCompletion} />
                         </div>}
 
                     {filter === "month" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">Due this month</p>
-                            <ThisMonths todoList={helpers.dueThisMonth(todos)} />
+                            <ThisMonths todoList={helpers.dueThisMonth(todos)} sort={sort} categoryFilter={filterOnCategory} completionFilter={filterOnCompletion} />
                         </div>}
                 </div>
             }
