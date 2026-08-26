@@ -6,12 +6,11 @@ function AllTodos() {
     return (
         <ul className="flex flex-wrap gap-2">
             {todos.map((t) => (
-                <li>
+                <li key={t.id}>
                     <Todo id={t.id} />
                 </li>
             ))}
         </ul>
-
     )
 }
 

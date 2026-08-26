@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as categoriesApi from "../api/categoriesApi";
 
-type Category = {
+export type Category = {
     id: number;
     name: string;
 };

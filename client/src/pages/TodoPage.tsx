@@ -3,8 +3,12 @@ import AllTodos from "../features/todos/AllTodos";
 import Todays from "../features/todos/Todays";
 import ThisWeeks from "../features/todos/ThisWeeks";
 import ThisMonths from "../features/todos/ThisMonths";
+import * as helpers from "../utils/helpers";
+import { useTodos } from "../context/TodosContext";
 
 function Todos() {
+    const { todos } = useTodos();
+
     const [isOpen, setIsOpen] = useState(true);
     const [filter, setFilter] = useState("all");
     const [filterOnCompletion, setFilterOnCompletion] = useState("uncompleted");
@@ -74,19 +78,19 @@ function Todos() {
                     {filter === "today" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">Due today</p>
-                            <Todays />
+                            <Todays todoList={helpers.dueToday(todos)} />
                         </div>}
 
                     {filter === "week" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">Due this week</p>
-                            <ThisWeeks />
+                            <ThisWeeks todoList={helpers.dueThisWeek(todos)} />
                         </div>}
 
                     {filter === "month" &&
                         <div className="space-y-6">
                             <p className="text-3xl underline">Due this month</p>
-                            <ThisMonths />
+                            <ThisMonths todoList={helpers.dueThisMonth(todos)} />
                         </div>}
                 </div>
             }

@@ -1,17 +1,18 @@
 import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from "react";
 import * as todosApi from "../api/todosApi.ts";
 
-type Todo = {
+export type TodoType = {
     id: number;
     name: string;
     description: string | null;
     category_id: number | null;
     deadline: string | null;
     done: boolean;
+    created_at: string;
 };
 
 type TodosContextValue = {
-    todos: Todo[];
+    todos: TodoType[];
     createTodo: (todo: { name: string; description: string | null; category_id: number | null; deadline: string | null }) => Promise<void>;
     removeTodo: (todo_id: number) => Promise<void>;
     removeAll: () => Promise<void>;
@@ -22,7 +23,7 @@ type TodosContextValue = {
 const TodosContext = createContext<TodosContextValue | null>(null);
 
 export function TodosProvider({ children }: { children: ReactNode }) {
-    const [todos, setTodos] = useState<Todo[]>([]);
+    const [todos, setTodos] = useState<TodoType[]>([]);
     const fetchedRef = useRef(false);
 
     useEffect(() => {
