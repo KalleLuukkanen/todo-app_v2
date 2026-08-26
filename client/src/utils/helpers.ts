@@ -9,7 +9,12 @@ export const toDatetimeLocal = (isoString: string | null) => {
 
 //sorting todos
 export const nearestDue = (todos: TodoType[]) => {
-    return [...todos].sort((a, b) => new Date(a.deadline as string).getTime() - new Date(b.deadline as string).getTime());
+    return [...todos].sort((a, b) => {
+        if (!a.deadline && !b.deadline) return 0;
+        if (!a.deadline) return 1;
+        if (!b.deadline) return -1;
+        return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
+    });
 };
 export const newest = (todos: TodoType[]) => {
     return [...todos].sort((a, b) => new Date(b.created_at as string).getTime() - new Date(a.created_at as string).getTime());
