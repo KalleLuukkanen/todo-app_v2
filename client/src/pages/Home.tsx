@@ -8,8 +8,8 @@ import TodoStats from "../features/todos/TodoStats";
 
 function Home() {
     const [isOpen_1, setIsOpen_1] = useState(true);
-    const [isOpen_2, setIsOpen_2] = useState(false);
-    const [isOpen_3, setIsOpen_3] = useState(false);
+    const [isOpen_2, setIsOpen_2] = useState(true);
+    const [isOpen_3, setIsOpen_3] = useState(true);
 
     const { todos } = useTodos();
 

@@ -89,3 +89,9 @@ export const amountOfCompleted = (todos: TodoType[]) => {
 export const amountOfUnCompleted = (todos: TodoType[]) => {
     return uncompleted(todos).length;
 };
+
+//searching todos
+export const searchTodos = (todos: TodoType[], searchWord: string) => {
+    if (searchWord === "") return [];
+    return todos.filter((t) => t.name.toLowerCase().includes(searchWord.toLowerCase()) || (t.description?.toLowerCase().includes(searchWord.toLowerCase()) ?? false));
+};
