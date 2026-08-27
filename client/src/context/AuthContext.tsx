@@ -4,6 +4,7 @@ import { authClient } from "../utils/auth.ts";
 type UserState = {
     loading: boolean;
     email: string | null;
+    createdAt?: Date;
 };
 
 type AuthContextValue = {
@@ -24,7 +25,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         authClient.getSession().then((session) => {
             if (session?.data?.user?.email) {
-                setUserState({ email: session.data.user.email, loading: false });
+                setUserState({ email: session.data.user.email, createdAt: session.data.user.createdAt, loading: false });
             } else {
                 setUserState({ email: null, loading: false });
             }
@@ -40,6 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await authClient.deleteUser();
         window.location.href = "/login";
     };
+
 
     return (
         <AuthContext.Provider value={{ userState, logout, deleteAccount }}>

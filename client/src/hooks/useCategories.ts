@@ -33,7 +33,12 @@ function useCategories() {
         setCategories((prev) => prev.map((c) => (c.id === categoryId ? updated : c)));
     };
 
-    return { categories, loading, createCategory, removeCategory, modifyCategory };
+    const removeAllCategories = async () => {
+        await categoriesApi.removeAll();
+        setCategories([]);
+    };
+
+    return { categories, loading, createCategory, removeCategory, modifyCategory, removeAllCategories };
 }
 
 export default useCategories;

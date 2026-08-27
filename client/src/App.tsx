@@ -3,9 +3,10 @@ import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import TodoPage from "./pages/TodoPage";
-import UserInfo from "./pages/UserInfo";
+import User from "./pages/User";
 import Authentication from "./features/auth/Authentication";
 import RequireAuth from "./features/auth/RequireAuth";
+import Settings from "./pages/Settings";
 
 
 
@@ -19,7 +20,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/todos" element={<TodoPage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/user" element={<UserInfo />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Route>
     </Routes>

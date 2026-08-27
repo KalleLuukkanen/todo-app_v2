@@ -11,9 +11,7 @@ function Search({ todoList, onClose }: { todoList: TodoType[], onClose: () => vo
         return (
             <>
                 <div className="fixed inset-0 z-40" onClick={() => onClose()} />
-                <ul className="absolute right-0 top-full z-50 w-64 rounded-bl-lg rounded-br-lg bg-gray-200 p-4 shadow-xl space-y-2"
-                    onClick={() => onClose()}
-                >
+                <ul className="absolute right-0 top-full z-50 w-64 rounded-bl-lg rounded-br-lg bg-gray-200 p-4 shadow-xl space-y-2">
                     {todoList.length === 0 && <li>No todos contain that word.</li>}
                     {todoList.map((t) => (
                         <li key={t.id} className="rounded p-2 border border-gray-300">
